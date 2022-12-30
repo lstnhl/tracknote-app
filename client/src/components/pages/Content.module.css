@@ -1,0 +1,20 @@
+.wrapper {
+    display: flex;
+    justify-content: center;
+
+    padding-top: 100px;
+    background: #1F1D36;
+    width: 100%;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+}
+
+@font-face {
+
+}

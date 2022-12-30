@@ -1,0 +1,79 @@
+.wrapper {
+    width: 100%;
+}
+
+.head h1 {
+    margin: 0;
+    font-size: 100px;
+}
+
+.head p {
+    margin: 0;
+    font-size: 30px;
+}
+
+.head {
+    padding: 30px;
+    border-radius: 20px;
+    background: #3F3351;
+    gap: 30px;
+    display: flex;
+}
+
+.headInfo {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+
+    position: relative;
+}
+
+.headInfo .text {
+
+}
+
+.coverButtons {
+    display: flex;
+    gap: 10px;
+
+    right: 0;
+    top: 0;
+    position: absolute;
+}
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.grid .headers{
+    display: grid;
+    font-size: 10px;
+}
+
+.grid .element {
+    display: grid;
+    transition: all .3s;
+    border-radius: 10px;
+
+    align-items: center;
+}
+
+.grid .element:hover {
+    background: blueviolet;
+}
+
+.headers, .element {
+    grid-template-columns: 2fr 1fr 1fr 2fr;
+    padding: 0 16px;
+}
+
+.explicit {
+    display: inline-block;
+    font-size: 12px;
+    border: white solid 1px;
+    padding: 3px 5px;
+    border-radius: 3px;
+    margin-left: 5px;
+}
