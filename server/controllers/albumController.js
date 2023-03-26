@@ -31,8 +31,9 @@ class AlbumController {
                 return res.status(403).json({message: 'Доступ запрещён'})
             }
         } catch (e) {
-            console.log(e)
-            return res.status(400).json({message: 'Ошибка'})
+            return res.status(500).json({
+                message: 'Произошла ошибка...'
+            })
         }
     }
 
@@ -94,7 +95,9 @@ class AlbumController {
                 }
             })
         } catch (e) {
-            return res.status(400).json({message: 'Ошибка'})
+            return res.status(500).json({
+                message: 'Произошла ошибка...'
+            })
         }
     }
 
@@ -112,7 +115,9 @@ class AlbumController {
 
             await Album.deleteOne({_id: req.params.id})
         } catch (e) {
-            return res.status(400).json({message: 'Ошибка'})
+            return res.status(500).json({
+                message: 'Произошла ошибка...'
+            })
         }
     }
 
@@ -126,8 +131,9 @@ class AlbumController {
 
             return res.json(track)
         } catch (e) {
-            console.log(e)
-            return res.status(500)
+            return res.status(500).json({
+                message: 'Произошла ошибка...'
+            })
         }
     }
 

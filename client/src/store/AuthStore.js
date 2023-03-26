@@ -4,6 +4,7 @@ import UserService from "../services/UserService";
 class AuthStore {
     data = {}
     message = ''
+    errors = []
     succeed = false
     isLoading = false
 
@@ -18,6 +19,7 @@ class AuthStore {
             password: ''
         }
         this.message = ''
+        this.errors = []
         this.succeed = false
         this.isLoading = false
     }
@@ -36,9 +38,11 @@ class AuthStore {
                 .then(res => {
                     this.succeed = true
                     this.message = ''
+                    this.errors = []
                 })
                 .catch(err => {
                     this.message = err.response.data.message
+                    this.errors = this.errors.concat(err.response.data.errors)
                 })
                 .finally(() => {
                     this.isLoading = false
@@ -50,9 +54,12 @@ class AuthStore {
                 .then(res => {
                     this.succeed = true
                     this.message = ''
+                    this.errors = []
                 })
                 .catch(err => {
                     this.message = err.response.data.message
+                    this.errors = [...err.response.data.errors]
+                    console.log(this.errors)
                 })
                 .finally(() => {
                     this.isLoading = false

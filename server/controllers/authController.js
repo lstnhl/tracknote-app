@@ -1,6 +1,7 @@
 import User from "../models/User.js";
 import {hash, compare} from "bcrypt";
 import jwt from "jsonwebtoken";
+import {validationResult} from "express-validator";
 
 class AuthController {
     async login(req, res) {
@@ -25,8 +26,7 @@ class AuthController {
             .cookie('access_token', token, {
                 httpOnly: true,
                 maxAge: 60 * 60 * 2 * 1000,
-                secure: true,
-                sameSite: 'none'
+                // secure: true,
             })
             .json({
                 message: 'Вход выполнен',
@@ -41,9 +41,13 @@ class AuthController {
 
     async register(req, res) {
         const {username, name, password} = req.body
+        const errors = validationResult(req)
 
-        if (!username || !name || !password) {
-            return res.status(422).json({message: "Пожалуйста, введите все данные (логин, имя, пароль)"})
+        if (!errors.isEmpty()) {
+            return res.status(422).json({
+                message: "Пожалуйста, введите корректные данные",
+                errors: errors.array()
+            })
         }
 
         const user = await User.findOne({username})
@@ -63,8 +67,9 @@ class AuthController {
 
             return res.json({message: `Пользователь ${newUser.name} успешно создан`})
         } catch (e) {
-            console.log(e)
-            return res.status(500)
+            return res.status(500).json({
+                message: 'Произошла ошибка...'
+            })
         }
     }
 

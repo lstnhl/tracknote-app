@@ -7,18 +7,6 @@ class UserController {
         return res.json(users)
     }
 
-    async create(req, res) {
-        const {username, name, password, avatar} = req.body
-        const user = await User.create({
-            username,
-            name,
-            password,
-            avatar,
-            albums: []
-        })
-        return res.json(user)
-    }
-
     async get(req, res) {
         try {
             const user = await User.findOne({
@@ -34,7 +22,7 @@ class UserController {
             res.json(user)
         } catch (e) {
             return res.status(500).json({
-                message: 'Внутренняя ошибка сервера'
+                message: 'Произошла ошибка...'
             })
         }
     }

@@ -90,6 +90,9 @@ const AuthPage = observer(({action}) => {
                 </div>
             </form>
             {AuthStore.message && <h1 className={s.message}>{AuthStore.isLoading ? '...' : AuthStore.message}</h1>}
+            {AuthStore.errors.map(error =>
+                <p key={error?.param}>{error?.msg}</p>
+            )}
         </>
     );
 })

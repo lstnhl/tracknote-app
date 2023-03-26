@@ -8,7 +8,6 @@ const upload = multer({dest: './public/avatars'})
 const router = express.Router()
 
 router.get('/', UserController.getAll)
-router.post('/new', UserController.create)
 router.get('/profile', authToken, UserController.profile)
 router.put('/profile', authToken, upload.single('file'), UserController.update)
 router.get('/:username', UserController.get)
