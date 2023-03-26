@@ -8,7 +8,9 @@ import rootRouter from './routers/rootRouter.js'
 
 const app = express()
 const PORT = 5000
-dotenv.config()
+dotenv.config({
+    path: '.env.sample'
+})
 
 app.use(cors({
     origin: true,
@@ -24,7 +26,7 @@ app.use('/api', rootRouter)
 
 async function run() {
     try {
-        await mongoose.connect('mongodb://localhost:27017/tracknote')
+        await mongoose.connect(process.env.MONGODB_HOST)
         app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
     } catch (e) {
         console.log(e)

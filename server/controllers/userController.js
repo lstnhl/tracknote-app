@@ -1,5 +1,4 @@
 import User from "../models/User.js";
-import jwt from "jsonwebtoken";
 import * as fs from "fs";
 
 class UserController {
@@ -34,8 +33,9 @@ class UserController {
 
             res.json(user)
         } catch (e) {
-            console.log(e)
-           return res.status(500)
+            return res.status(500).json({
+                message: 'Внутренняя ошибка сервера'
+            })
         }
     }
 

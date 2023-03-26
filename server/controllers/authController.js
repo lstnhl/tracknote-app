@@ -43,7 +43,7 @@ class AuthController {
         const {username, name, password} = req.body
 
         if (!username || !name || !password) {
-            return res.status(400).json({message: "Пожалуйста, введите все данные (логин, имя, пароль)"})
+            return res.status(422).json({message: "Пожалуйста, введите все данные (логин, имя, пароль)"})
         }
 
         const user = await User.findOne({username})
